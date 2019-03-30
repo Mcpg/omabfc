@@ -7,9 +7,17 @@ OMABFC is a command-line tool. Available options:
 
  * **--input-file | -i**: provides input Brainfuck file (required),
  * **--output-file | -o**: provides output file for assembly code (by default code is outputted to stdout),
- * **--version | -v**: prints OMABFC version to stdout.
+ * **--version | -v**: prints OMABFC version to stdout,
+ * **--help | -h**: prints help to stdout,
+ * **--code-gen | -c**: picks a code generator (required),
+ * **--tape-size | -t**: provides the allocated tape size in bytes (defaults to 1000)
 
-## Actually building Brainfuck programs into executables
+### Available code generators
+The following code generators are available:
+ * **x86_64lin**: produces x86_64 Assembly utilizing Linux syscalls,
+ * **x86_16dos**: produces 16-bit Assembly code that can be built as a DOS .COM executable.
+
+## Actually building Brainfuck programs into executables (for x86_64lin)
 OMABFC only produces assembly code. This means, that it needs
 to be manually assembled and linked. The process is fairly simple.
 

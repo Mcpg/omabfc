@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/* The symtab generator should be rewritten. I think there might be some memory
+   leaks here and there, it requires careful investigation, or a total rewrite.
+   
+   Even if the code is just 90 lines, I find it hard to see how everything
+   flows here. I guess that's bad? */
+
+/* Compiling code that starts with a loop creates a SYMBOL_NONE in the table,
+   which really shouldn't be there. */
+
 static int is_symbol(char c)
 {
     return c == SYMBOL_VINC ||
@@ -17,7 +26,6 @@ static int is_symbol(char c)
 
 static void parse_loop(char* bfcode, int* i, struct symbol_data* loop_symbol);
 
-/* this function assumes, that c is a symbol and not a loop */
 static void parse_symbol(char* bfcode, int* i, struct symbol_data** target_val)
 {
     char c = bfcode[*i];
